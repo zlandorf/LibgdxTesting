@@ -1,4 +1,4 @@
-package fr.zlandorf.wildwest;
+package fr.zlandorf.wildwest.domain;
 
 public enum Location {
     SHACK,
