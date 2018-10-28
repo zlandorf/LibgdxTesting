@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import fr.zlandorf.wildwest.entities.bob.Bob
-import fr.zlandorf.wildwest.systems.BobSystem
+import fr.zlandorf.wildwest.systems.FSMSystem
 
 class WildWestGame : ApplicationAdapter() {
     private var batch: SpriteBatch? = null
@@ -19,7 +19,7 @@ class WildWestGame : ApplicationAdapter() {
         batch = SpriteBatch()
         img = Texture("badlogic.jpg")
 
-        engine.addSystem(BobSystem())
+        engine.addSystem(FSMSystem())
         engine.addEntity(Bob())
     }
 

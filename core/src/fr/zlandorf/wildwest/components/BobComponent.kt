@@ -1,10 +1,21 @@
 package fr.zlandorf.wildwest.components
 
 import com.badlogic.ashley.core.Component
-import com.badlogic.gdx.ai.fsm.State
-import com.badlogic.gdx.ai.fsm.StateMachine
-import fr.zlandorf.wildwest.entities.bob.Bob
+import fr.zlandorf.wildwest.domain.Location
+
+const val THRESHOLD_TIREDNESS = 5
+const val MAX_GOLD_CARRIED = 3
 
 data class BobComponent(
-        var fsm: StateMachine<Bob, State<Bob>>
-) : Component
+    var location: Location = Location.SHACK,
+    var goldCarried: Int = 0,
+    var fatigue: Int  = 0,
+    var wealth: Int  = 0
+) : Component {
+
+    val isFatigued: Boolean
+        get() = fatigue > THRESHOLD_TIREDNESS
+
+    val arePocketsFull: Boolean
+        get() = goldCarried >= MAX_GOLD_CARRIED
+}
