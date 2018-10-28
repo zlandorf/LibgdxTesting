@@ -12,9 +12,16 @@ class FSMSystem : IteratingSystem(
         ).get()
 ) {
 
+    private var elapsedTime : Float = 0f
+
     override fun processEntity(entity: Entity?, deltaTime: Float) {
-        entity?.let {
-            fsmMapper.get(it).fsm.update()
+        elapsedTime += deltaTime
+
+        if (elapsedTime >= 0.8f) {
+            entity?.let {
+                fsmMapper.get(it).fsm.update()
+            }
+            elapsedTime = 0f
         }
     }
 

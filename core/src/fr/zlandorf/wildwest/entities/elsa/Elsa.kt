@@ -1,4 +1,4 @@
-package fr.zlandorf.wildwest.entities.bob
+package fr.zlandorf.wildwest.entities.elsa
 
 import com.badlogic.ashley.core.Entity
 import com.badlogic.gdx.ai.GdxAI
@@ -7,20 +7,21 @@ import com.badlogic.gdx.ai.fsm.State
 import com.badlogic.gdx.ai.fsm.StateMachine
 import com.badlogic.gdx.ai.msg.Telegram
 import com.badlogic.gdx.ai.msg.Telegraph
-import fr.zlandorf.wildwest.components.BobComponent
+import fr.zlandorf.wildwest.components.ElsaComponent
 import fr.zlandorf.wildwest.components.FSMComponent
 import fr.zlandorf.wildwest.components.fsmMapper
-import fr.zlandorf.wildwest.entities.bob.states.BobStates.GO_HOME_AND_SLEEP_TILL_RESTED
+import fr.zlandorf.wildwest.entities.elsa.states.ElsaStates.DO_HOUSE_WORK
+import fr.zlandorf.wildwest.entities.elsa.states.ElsaStates.GLOBAL_STATE
 
-class Bob : Entity(), Telegraph {
+class Elsa : Entity(), Telegraph {
 
     @Suppress("UNCHECKED_CAST")
-    val fsm: StateMachine<Bob, State<Bob>>
-        get() = fsmMapper.get(this).fsm as StateMachine<Bob, State<Bob>>
+    val fsm: StateMachine<Elsa, State<Elsa>>
+        get() = fsmMapper.get(this).fsm as StateMachine<Elsa, State<Elsa>>
 
     init {
-        add(BobComponent())
-        add(FSMComponent(DefaultStateMachine(this, GO_HOME_AND_SLEEP_TILL_RESTED)))
+        add(ElsaComponent())
+        add(FSMComponent(DefaultStateMachine(this, DO_HOUSE_WORK, GLOBAL_STATE)))
     }
 
     override fun handleMessage(msg: Telegram): Boolean {
